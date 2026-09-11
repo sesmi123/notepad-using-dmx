@@ -12,8 +12,8 @@
     "implement-next-phase"
   ],
   "skill_outputs": {
-    "implement-next-phase": "## Implementing Phase 3: HTTP API\n\n3 tasks in this phase:\n- Create src/notes/api.py FastAPI router for POST/GET/PUT/DELETE /notes\n- Map service errors to JSON {error} plus optional details; 201/200/204/404/422\n- Create src/notes/app.py that mounts the router, wires SQLite, runnable with uvicorn\n\n### Task: Create src/notes/api.py\nAdded router for POST /notes, GET /notes, GET /notes/{id}, PUT /notes/{id}, DELETE /notes/{id}.\n\n### Task: Map service errors\nNoteValidationError -> 422 with error+details; NoteNotFoundError -> 404; malformed requests -> 422 with the same JSON shape.\n\n### Task: Create src/notes/app.py\ncreate_app(db_path) wires NotesRepository -> NotesService -> router. Default app uses data/notes.sqlite. `uv run uvicorn notes.app:app`. Smoke-tested CRUD/404/422. Existing pytest still 13 passed.\n\n## Phase Complete: Phase 3: HTTP API\n\n- Added FastAPI notes router in src/notes/api.py\n- Mapped validation/not-found/request errors to {error, details?} JSON with 201/200/204/404/422\n- Added create_app() in src/notes/app.py, runnable via uvicorn notes.app:app\n\n---\nNext:\n  - Review the changes. The loop will commit and advance.",
-    "commit": "Committed: 85d8201\nfeat: add notes service with validation and repository tests\n\n- add NotesService with UUID create, timestamps, and CRUD\n- raise NoteValidationError and NoteNotFoundError for the API to map\n- add pytest coverage for NotesRepository on isolated sqlite files\n\nPuts validation and identity in the service layer so HTTP handlers stay thin. Repository tests keep pytest collecting so loop validators pass between phases.\n\nNext:\n  - Push:    git push origin HEAD"
+    "implement-next-phase": "## Implementing Phase 4: Tests and docs\n\n3 tasks in this phase:\n- Add tests/ using pytest + FastAPI TestClient against an isolated SQLite file\n- Cover create/read/list/update/delete, 404s, validation failures (no data change), and persistence across a reconnect\n- Write README.md with install/run/test commands, endpoints, request/response shapes, and validation rules\n\n### Task: Add tests/ with TestClient\nAdded tests/test_api.py using TestClient(create_app(tmp sqlite)). Existing tests/test_repository.py remains.\n\n### Task: Coverage\nCovered CRUD, 404s, 422 validation (including no data change), malformed JSON, and a second create_app on the same SQLite file. 34 tests passed.\n\n### Task: README.md\nDocumented uv sync, uvicorn, pytest, endpoints, JSON shapes, and validation rules.\n\n## Phase Complete: Phase 4: Tests and docs\n\n- Added FastAPI TestClient tests against isolated SQLite\n- Covered CRUD, 404, validation-without-mutation, and persistence across reconnect\n- Added README.md with run/test commands and API contract\n\n---\nNext:\n  - Review the changes. The loop will commit and advance.",
+    "commit": "Committed: 9bf2607\nfeat: add fastapi notes router with consistent error json\n\n- add notes CRUD routes in src/notes/api.py\n- map validation and missing notes to 422/404 {error, details?}\n- add create_app() in src/notes/app.py for uvicorn notes.app:app\n\nExposes the notes service over HTTP without putting SQLite or validation rules in the handlers.\n\nNext:\n  - Push:    git push origin HEAD"
   },
   "validator_results": [
     {
@@ -30,7 +30,7 @@
     }
   ],
   "outcome": "warning",
-  "iteration_count": 2,
+  "iteration_count": 3,
   "timestamp": "2026-09-11T20:11:24.421717+00:00",
-  "updated_at": "2026-09-11T20:26:24.631794+00:00"
+  "updated_at": "2026-09-11T20:30:22.756228+00:00"
 }

@@ -19,6 +19,7 @@ Python 3.12, FastAPI, uvicorn, SQLite file on disk. Package layout is `src/notes
 - Run API: `uv run uvicorn notes.app:app`
 - Run tests: `uv run pytest -q`
 - HTTP tests should call `create_app(isolated_sqlite_path)` so they never touch `data/notes.sqlite`
+- API tests live in `tests/test_api.py` and use `TestClient(create_app(tmp_path / "notes-test.sqlite"))`
 
 ## Constraints
 
