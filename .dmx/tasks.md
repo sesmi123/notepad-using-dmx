@@ -18,9 +18,9 @@
 - [x] Implement get/list/update/delete in the service: update refreshes `updated_at` only; missing notes raise a typed not-found error
 
 ## Phase 3: HTTP API
-- [ ] Create `src/notes/api.py` (FastAPI router) for `POST /notes`, `GET /notes`, `GET /notes/{id}`, `PUT /notes/{id}`, `DELETE /notes/{id}`
-- [ ] Map service errors to JSON `{ "error": ... }` plus optional `details`; use 201/200/204/404/422 as specified
-- [ ] Create `src/notes/app.py` (or `__init__.py`) that mounts the router, wires SQLite, and is runnable with uvicorn
+- [x] Create `src/notes/api.py` (FastAPI router) for `POST /notes`, `GET /notes`, `GET /notes/{id}`, `PUT /notes/{id}`, `DELETE /notes/{id}`
+- [x] Map service errors to JSON `{ "error": ... }` plus optional `details`; use 201/200/204/404/422 as specified
+- [x] Create `src/notes/app.py` (or `__init__.py`) that mounts the router, wires SQLite, and is runnable with uvicorn
 
 ## Phase 4: Tests and docs
 - [ ] Add `tests/` using pytest + FastAPI TestClient against an isolated SQLite file

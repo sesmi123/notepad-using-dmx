@@ -14,3 +14,4 @@ _(none yet — append observations here during implementation; promoted to core 
 - plan loop completed (outcome: success) — chained to dev (job `feature-add-notes-rest-api-with-persistence-and-tests`).
 - Added SQLite notes repository and project skeleton — Phase 1 complete.
 - Added NotesService validation and CRUD — Phase 2 complete.
+- Added FastAPI notes router and create_app() — Phase 3 complete.

@@ -12,8 +12,8 @@
     "implement-next-phase"
   ],
   "skill_outputs": {
-    "implement-next-phase": "## Implementing Phase 2: Service layer\n\n3 tasks in this phase:\n- Create src/notes/service.py that generates UUID ids and sets created_at / updated_at on create\n- Implement title/content validation in the service (required, non-whitespace, max 200 / 10_000 chars); raise a typed error the API can map to 422\n- Implement get/list/update/delete in the service: update refreshes updated_at only; missing notes raise a typed not-found error\n\n### Task: Create src/notes/service.py\nAdded NotesService.create with uuid4 and UTC created_at/updated_at.\n\n### Task: Validation\nAdded NoteValidationError with a details dict; title/content required, non-whitespace, max 200/10000.\n\n### Task: get/list/update/delete\nget/list/update/delete go through the repository. update keeps created_at and sets a new updated_at. Missing ids raise NoteNotFoundError. Existing repository tests still pass (13).\n\n## Phase Complete: Phase 2: Service layer\n\n- Added NotesService.create with UUID ids and timestamps\n- Added NoteValidationError for 422-mappable field errors\n- Added get/list/update/delete with NoteNotFoundError; update does not change created_at\n\n---\nNext:\n  - Review the changes. The loop will commit and advance.",
-    "commit": "Committed: a69b70a\nfeat: add sqlite notes repository and python project skeleton\n\n- add pyproject.toml, uv.lock, and src/notes package (python 3.12, fastapi, pytest)\n- add immutable Note model and NotesRepository sqlite CRUD\n- isolate test databases via isolated_repository()\n- record stack and persistence patterns in the memory bank\n\nLocks the notes API onto sqlite and a src/notes layout so later phases can add service and HTTP layers without choosing a stack again.\n\nNext:\n  - Push:    git push origin HEAD"
+    "implement-next-phase": "## Implementing Phase 3: HTTP API\n\n3 tasks in this phase:\n- Create src/notes/api.py FastAPI router for POST/GET/PUT/DELETE /notes\n- Map service errors to JSON {error} plus optional details; 201/200/204/404/422\n- Create src/notes/app.py that mounts the router, wires SQLite, runnable with uvicorn\n\n### Task: Create src/notes/api.py\nAdded router for POST /notes, GET /notes, GET /notes/{id}, PUT /notes/{id}, DELETE /notes/{id}.\n\n### Task: Map service errors\nNoteValidationError -> 422 with error+details; NoteNotFoundError -> 404; malformed requests -> 422 with the same JSON shape.\n\n### Task: Create src/notes/app.py\ncreate_app(db_path) wires NotesRepository -> NotesService -> router. Default app uses data/notes.sqlite. `uv run uvicorn notes.app:app`. Smoke-tested CRUD/404/422. Existing pytest still 13 passed.\n\n## Phase Complete: Phase 3: HTTP API\n\n- Added FastAPI notes router in src/notes/api.py\n- Mapped validation/not-found/request errors to {error, details?} JSON with 201/200/204/404/422\n- Added create_app() in src/notes/app.py, runnable via uvicorn notes.app:app\n\n---\nNext:\n  - Review the changes. The loop will commit and advance.",
+    "commit": "Committed: 85d8201\nfeat: add notes service with validation and repository tests\n\n- add NotesService with UUID create, timestamps, and CRUD\n- raise NoteValidationError and NoteNotFoundError for the API to map\n- add pytest coverage for NotesRepository on isolated sqlite files\n\nPuts validation and identity in the service layer so HTTP handlers stay thin. Repository tests keep pytest collecting so loop validators pass between phases.\n\nNext:\n  - Push:    git push origin HEAD"
   },
   "validator_results": [
     {
@@ -30,7 +30,7 @@
     }
   ],
   "outcome": "warning",
-  "iteration_count": 1,
+  "iteration_count": 2,
   "timestamp": "2026-09-11T20:11:24.421717+00:00",
-  "updated_at": "2026-09-11T20:23:24.826781+00:00"
+  "updated_at": "2026-09-11T20:26:24.631794+00:00"
 }

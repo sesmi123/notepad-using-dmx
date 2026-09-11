@@ -6,7 +6,7 @@ Python 3.12, FastAPI, uvicorn, SQLite file on disk. Package layout is `src/notes
 
 ## Key dependencies
 
-- `fastapi` — HTTP API (wired in a later phase)
+- `fastapi` — HTTP API (`notes.api` / `notes.app`)
 - `uvicorn` — ASGI server
 - `pytest` / `httpx` — tests (dev extra)
 - stdlib `sqlite3` — persistence
@@ -16,7 +16,9 @@ Python 3.12, FastAPI, uvicorn, SQLite file on disk. Package layout is `src/notes
 - Install: `uv sync --extra dev`
 - Dev SQLite file: `data/notes.sqlite` (gitignored)
 - Test SQLite: `isolated_repository(tmp_dir)` in `src/notes/repository.py` — never the default file
-- Run API / tests: not documented yet (API and test suite land in later phases)
+- Run API: `uv run uvicorn notes.app:app`
+- Run tests: `uv run pytest -q`
+- HTTP tests should call `create_app(isolated_sqlite_path)` so they never touch `data/notes.sqlite`
 
 ## Constraints
 
