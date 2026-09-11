@@ -13,9 +13,9 @@
 - [x] Add a repository helper that opens an isolated SQLite file for tests (not the dev database)
 
 ## Phase 2: Service layer
-- [ ] Create `src/notes/service.py` that generates UUID ids and sets `created_at` / `updated_at` on create
-- [ ] Implement title/content validation in the service (required, non-whitespace, max 200 / 10_000 chars); raise a typed error the API can map to 422
-- [ ] Implement get/list/update/delete in the service: update refreshes `updated_at` only; missing notes raise a typed not-found error
+- [x] Create `src/notes/service.py` that generates UUID ids and sets `created_at` / `updated_at` on create
+- [x] Implement title/content validation in the service (required, non-whitespace, max 200 / 10_000 chars); raise a typed error the API can map to 422
+- [x] Implement get/list/update/delete in the service: update refreshes `updated_at` only; missing notes raise a typed not-found error
 
 ## Phase 3: HTTP API
 - [ ] Create `src/notes/api.py` (FastAPI router) for `POST /notes`, `GET /notes`, `GET /notes/{id}`, `PUT /notes/{id}`, `DELETE /notes/{id}`

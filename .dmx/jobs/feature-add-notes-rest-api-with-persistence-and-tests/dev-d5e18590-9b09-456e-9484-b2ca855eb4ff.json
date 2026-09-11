@@ -12,11 +12,25 @@
     "implement-next-phase"
   ],
   "skill_outputs": {
-    "implement-next-phase": "## Implementing Phase 1: Project skeleton and data layer\n\n4 tasks in this phase:\n- Add pyproject.toml for Python 3.12 with FastAPI, uvicorn, pytest, and a notes package under src/\n- Create src/notes/models.py with a Note dataclass: UUID id, title, content, created_at, updated_at\n- Create src/notes/repository.py with SQLite schema and CRUD against a file on disk (path configurable; default local file)\n- Add a repository helper that opens an isolated SQLite file for tests (not the dev database)\n\n### Task: Add pyproject.toml\nWrote pyproject.toml (Python >=3.12, FastAPI, uvicorn, pytest, httpx) and src/notes/__init__.py. uv lock/sync succeeded.\n\n### Task: Create src/notes/models.py\nAdded frozen Note dataclass with UUID id, title, content, created_at, updated_at.\n\n### Task: Create src/notes/repository.py\nAdded NotesRepository with SQLite CRUD; default path data/notes.sqlite.\n\n### Task: isolated SQLite helper\nAdded isolated_db_path() and isolated_repository(tmp_dir) so tests never use the dev file. Smoke-tested create/get/list/update/delete against a temp DB.\n\n## Phase Complete: Phase 1: Project skeleton and data layer\n\n- Added pyproject.toml and src/notes package (Python 3.12, FastAPI, uvicorn, pytest)\n- Added src/notes/models.py Note dataclass\n- Added src/notes/repository.py SQLite CRUD (default data/notes.sqlite)\n- Added isolated_repository() for test SQLite files\n\n---\nNext:\n  - Review the changes. The loop will commit and advance."
+    "implement-next-phase": "## Implementing Phase 2: Service layer\n\n3 tasks in this phase:\n- Create src/notes/service.py that generates UUID ids and sets created_at / updated_at on create\n- Implement title/content validation in the service (required, non-whitespace, max 200 / 10_000 chars); raise a typed error the API can map to 422\n- Implement get/list/update/delete in the service: update refreshes updated_at only; missing notes raise a typed not-found error\n\n### Task: Create src/notes/service.py\nAdded NotesService.create with uuid4 and UTC created_at/updated_at.\n\n### Task: Validation\nAdded NoteValidationError with a details dict; title/content required, non-whitespace, max 200/10000.\n\n### Task: get/list/update/delete\nget/list/update/delete go through the repository. update keeps created_at and sets a new updated_at. Missing ids raise NoteNotFoundError. Existing repository tests still pass (13).\n\n## Phase Complete: Phase 2: Service layer\n\n- Added NotesService.create with UUID ids and timestamps\n- Added NoteValidationError for 422-mappable field errors\n- Added get/list/update/delete with NoteNotFoundError; update does not change created_at\n\n---\nNext:\n  - Review the changes. The loop will commit and advance.",
+    "commit": "Committed: a69b70a\nfeat: add sqlite notes repository and python project skeleton\n\n- add pyproject.toml, uv.lock, and src/notes package (python 3.12, fastapi, pytest)\n- add immutable Note model and NotesRepository sqlite CRUD\n- isolate test databases via isolated_repository()\n- record stack and persistence patterns in the memory bank\n\nLocks the notes API onto sqlite and a src/notes layout so later phases can add service and HTTP layers without choosing a stack again.\n\nNext:\n  - Push:    git push origin HEAD"
   },
-  "validator_results": [],
-  "outcome": null,
-  "iteration_count": 0,
+  "validator_results": [
+    {
+      "pass": true,
+      "message": "Tests passed \u2014 ran `uv run pytest -q` (exit 0)",
+      "checks": [
+        {
+          "name": "tests_pass",
+          "pass": true,
+          "message": ".............                                                            [100%]\n13 passed in 0.03s"
+        }
+      ],
+      "tool": "run_tests"
+    }
+  ],
+  "outcome": "warning",
+  "iteration_count": 1,
   "timestamp": "2026-09-11T20:11:24.421717+00:00",
-  "updated_at": "2026-09-11T20:13:10.228296+00:00"
+  "updated_at": "2026-09-11T20:23:24.826781+00:00"
 }

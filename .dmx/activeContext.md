@@ -13,3 +13,4 @@ _(none yet — append observations here during implementation; promoted to core 
 - spec loop completed (outcome: success) — chained to plan (job `feature-add-notes-rest-api-with-persistence-and-tests`).
 - plan loop completed (outcome: success) — chained to dev (job `feature-add-notes-rest-api-with-persistence-and-tests`).
 - Added SQLite notes repository and project skeleton — Phase 1 complete.
+- Added NotesService validation and CRUD — Phase 2 complete.

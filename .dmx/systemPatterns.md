@@ -21,7 +21,9 @@ The HTTP layer should not contain database-specific details. Business logic shou
 
 ## Key patterns
 
-Persistence is a frozen `NotesRepository` in `src/notes/repository.py`. It owns SQLite schema and CRUD. The HTTP and service layers do not exist yet; they must not open SQLite connections directly.
+Persistence is a frozen `NotesRepository` in `src/notes/repository.py`. It owns SQLite schema and CRUD. HTTP handlers must not open SQLite connections.
+
+The service layer is `NotesService` in `src/notes/service.py`. It owns UUID generation, timestamps, and title/content validation. It raises `NoteValidationError` (field `details`, map to HTTP 422) and `NoteNotFoundError` (map to HTTP 404). The API must map these exceptions; it must not re-implement validation.
 
 Note records are an immutable `Note` dataclass in `src/notes/models.py` (UUID `id`, timestamps as `datetime`).
 
@@ -34,6 +36,6 @@ Expected patterns from the spec:
 
 ## Component relationships
 
-`src/notes/models.py` is the in-memory note shape. `src/notes/repository.py` maps it to SQLite. API and service layers are still to come; they should depend downward (API → service → repository), not skip layers.
+`src/notes/models.py` is the in-memory note shape. `src/notes/repository.py` maps it to SQLite. `src/notes/service.py` is the business layer (API → service → repository). The HTTP layer is still to come and must not skip the service.
 
 Do not introduce a second competing pattern for the same concern (two ORMs, two error formats, two config styles).
