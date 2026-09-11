@@ -17,3 +17,4 @@ _(none yet — append observations here during implementation; promoted to core 
 - Added FastAPI notes router and create_app() — Phase 3 complete.
 - Added HTTP TestClient tests and README — Phase 4 complete.
 - dev loop completed (outcome: warning) (job `feature-add-notes-rest-api-with-persistence-and-tests`).
+- validate loop completed (outcome: success) — chained to release (job `feature-add-notes-rest-api-with-persistence-and-tests`).

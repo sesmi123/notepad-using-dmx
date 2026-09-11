@@ -1,0 +1,64 @@
+{
+  "commit": "0292642c2a65facd8a353de00024cf0e02ef2342",
+  "scope_items": [
+    {
+      "item": "HTTP/API layer: POST /notes, GET /notes, GET /notes/{id}, PUT /notes/{id}, DELETE /notes/{id}",
+      "verdict": "covered",
+      "evidence": "src/notes/api.py:73-92"
+    },
+    {
+      "item": "Business/service layer: validation rules, timestamp behaviour (created_at immutable, updated_at on write)",
+      "verdict": "covered",
+      "evidence": "src/notes/service.py:32-50,src/notes/service.py:80-91"
+    },
+    {
+      "item": "Persistence/repository layer: durable storage, not in-memory-only; tests use isolated storage",
+      "verdict": "covered",
+      "evidence": "src/notes/repository.py:11-18,src/notes/repository.py:109-111,tests/test_api.py:166-175"
+    },
+    {
+      "item": "Note model: id, title, content, created_at, updated_at",
+      "verdict": "covered",
+      "evidence": "src/notes/models.py:8-14"
+    },
+    {
+      "item": "Consistent error JSON (error, optional details); 404 for missing notes; 400/422 for validation; 201/200/204 as specified",
+      "verdict": "covered",
+      "evidence": "src/notes/api.py:47-67,src/notes/api.py:73-92"
+    },
+    {
+      "item": "Automated tests for CRUD, missing resources, validation, and persistence",
+      "verdict": "covered",
+      "evidence": "tests/test_api.py:30-175,tests/test_repository.py"
+    },
+    {
+      "item": "Docs: how to run the API, how to run tests, endpoints, request/response, validation",
+      "verdict": "covered",
+      "evidence": "README.md:1-91"
+    }
+  ],
+  "scope_creep": [],
+  "regressions": [],
+  "edge_cases": [
+    {
+      "description": "Missing, empty, whitespace, and over-length title/content rejected with 422 and no data change",
+      "addressed": true,
+      "evidence": "tests/test_api.py:112-152,src/notes/service.py:32-50"
+    },
+    {
+      "description": "Malformed JSON returns 422",
+      "addressed": true,
+      "evidence": "tests/test_api.py:155-163"
+    },
+    {
+      "description": "Missing note id returns 404 for GET, PUT, and DELETE",
+      "addressed": true,
+      "evidence": "tests/test_api.py:49-54,tests/test_api.py:84-91,tests/test_api.py:105-108"
+    },
+    {
+      "description": "SQLite data survives a new create_app on the same file",
+      "addressed": true,
+      "evidence": "tests/test_api.py:166-175"
+    }
+  ]
+}
