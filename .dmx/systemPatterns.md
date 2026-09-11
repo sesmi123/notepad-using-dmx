@@ -2,7 +2,7 @@
 
 ## High-level architecture
 
-No application code exists yet. The spec requires a layered layout when implementation starts:
+The notes REST API is implemented under `src/notes/` with this layered layout:
 
 ```text
 HTTP/API layer

@@ -13,9 +13,32 @@
   "skill_outputs": {
     "create-pr": "Memory: synced and committed on this branch (6e395bf).\n\nStep 7 failed: no git remote `origin`.\n  fatal: 'origin' does not appear to be a git repository\n\n`.dmx/config.md` still has owner/repo `{REQUIRED}`. GitHub MCP previously returned bad credentials.\n\nPR was not created. Push the branch to a GitHub repo, set owner/repo in `.dmx/config.md`, then re-run create-pr / loop-continue.\n\nWorking tree is clean besides the failed push."
   },
-  "validator_results": [],
-  "outcome": null,
+  "validator_results": [
+    {
+      "pass": false,
+      "message": "PR ready check failed \u2014 see checks for details",
+      "checks": [
+        {
+          "name": "pr_exists",
+          "pass": false,
+          "message": "No open PR found for the current branch"
+        },
+        {
+          "name": "ticket_transitioned",
+          "pass": true,
+          "message": "Ticket 'feature-add-notes-rest-api-with-persistence-and-tests' transition not verified \u2014 requires ticketing API access. Confirm manually or override this validator for automated checking."
+        },
+        {
+          "name": "memory_updated",
+          "pass": true,
+          "message": "Memory bank files updated in the latest commit"
+        }
+      ],
+      "tool": "check_pr_ready"
+    }
+  ],
+  "outcome": "failure",
   "iteration_count": 0,
   "timestamp": "2026-09-11T20:34:49.701335+00:00",
-  "updated_at": "2026-09-11T20:35:53.315831+00:00"
+  "updated_at": "2026-09-11T20:58:19.476920+00:00"
 }

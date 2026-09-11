@@ -25,7 +25,7 @@ Python 3.12, FastAPI, uvicorn, SQLite file on disk. Package layout is `src/notes
 
 - Python 3.10 is the system default on this machine; dmx itself runs via uv on Python 3.12. If the API is Python, prefer 3.12+ to match that, or document an explicit version.
 - Origin: `https://github.com/sesmi123/notepad-using-dmx.git` (`owner: sesmi123`, `repo: notepad-using-dmx`).
-- GitHub MCP `~/.cursor/mcp.json` still has placeholder token `ghp_your_token_here`; `gh` CLI is not logged in. Git HTTPS push works.
+- GitHub CLI (`gh`) is authenticated as `sesmi123`. GitHub MCP can open PRs against this repo.
 - Ticketing is `none`: branch names come from the work description, not from Jira/GitHub issue IDs.
 - Integration and production branch are both `main`.
 - Do not hard-code secrets. Keep test storage isolated from any later real data.
