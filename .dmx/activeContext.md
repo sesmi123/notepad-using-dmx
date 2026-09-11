@@ -4,8 +4,7 @@
 _(none yet — append observations here during implementation; promoted to core files on commit or create-pr)_
 
 ## Open Decisions
-- GitHub `owner`/`repo` are unset; no `origin` remote.
-- GitHub MCP auth currently fails with bad credentials.
+- GitHub MCP still uses a placeholder PAT in `~/.cursor/mcp.json` (`ghp_your_token_here`). `gh` CLI is not logged in. Git push works via HTTPS credentials; MCP `create_pull_request` may still fail until a real token or `gh auth login` is set.
 
 ## Session Notes
 - `/dmx/init` completed with workflow `sdlc` and ticketing `none`.
@@ -18,4 +17,4 @@ _(none yet — append observations here during implementation; promoted to core 
 - Added HTTP TestClient tests and README — Phase 4 complete.
 - dev loop completed (outcome: warning) (job `feature-add-notes-rest-api-with-persistence-and-tests`).
 - validate loop completed (outcome: success) — chained to release (job `feature-add-notes-rest-api-with-persistence-and-tests`).
-- PR opened for: Add notes REST API with persistence and tests.
+- Origin is `https://github.com/sesmi123/notepad-using-dmx.git` (personal account, not Wasabi). Feature branch was accidentally renamed to `main`; restored `feature-add-notes-rest-api-with-persistence-and-tests`. GitHub `main` already contains the full feature, so a PR would only show later config/job commits unless `origin/main` is reset to the init commit.
