@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "dmx": {
+      "command": "/opt/homebrew/bin/uvx",
+      "args": ["--python", "3.12", "--from", "deepmodel-dmx", "dmx", "serve"],
+      "env": {
+        "PATH": "/opt/homebrew/bin:/Users/sesmi/.local/bin:/usr/bin:/bin"
+      }
+    }
+  }
+}
