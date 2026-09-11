@@ -17,5 +17,5 @@ production_branch:   main         # production — releases, hotfixes, tags
 
 ## GitHub
 
-owner:  {REQUIRED}
-repo:   {REQUIRED}
+owner:  sesmi123
+repo:   notepad-using-dmx
