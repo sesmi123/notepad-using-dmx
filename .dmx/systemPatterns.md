@@ -21,7 +21,9 @@ The HTTP layer should not contain database-specific details. Business logic shou
 
 ## Key patterns
 
-Not yet established — no framework or modules are in the tree. When code is added, match whatever conventions that stack uses (routing, validation, error mapping, test layout).
+Persistence is a frozen `NotesRepository` in `src/notes/repository.py`. It owns SQLite schema and CRUD. The HTTP and service layers do not exist yet; they must not open SQLite connections directly.
+
+Note records are an immutable `Note` dataclass in `src/notes/models.py` (UUID `id`, timestamps as `datetime`).
 
 Expected patterns from the spec:
 
@@ -32,6 +34,6 @@ Expected patterns from the spec:
 
 ## Component relationships
 
-The repo currently contains `spec.md`, Cursor/dmx config, and no `src/` (or equivalent) tree. After the first implementation phases, expect API handlers → service → repository → storage, plus a test suite beside or under the app package.
+`src/notes/models.py` is the in-memory note shape. `src/notes/repository.py` maps it to SQLite. API and service layers are still to come; they should depend downward (API → service → repository), not skip layers.
 
 Do not introduce a second competing pattern for the same concern (two ORMs, two error formats, two config styles).

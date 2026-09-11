@@ -7,10 +7,10 @@
 ---
 
 ## Phase 1: Project skeleton and data layer
-- [ ] Add `pyproject.toml` for Python 3.12 with FastAPI, uvicorn, pytest, and a `notes` package under `src/`
-- [ ] Create `src/notes/models.py` with a `Note` dataclass: UUID `id`, `title`, `content`, `created_at`, `updated_at`
-- [ ] Create `src/notes/repository.py` with SQLite schema and CRUD against a file on disk (path configurable; default local file)
-- [ ] Add a repository helper that opens an isolated SQLite file for tests (not the dev database)
+- [x] Add `pyproject.toml` for Python 3.12 with FastAPI, uvicorn, pytest, and a `notes` package under `src/`
+- [x] Create `src/notes/models.py` with a `Note` dataclass: UUID `id`, `title`, `content`, `created_at`, `updated_at`
+- [x] Create `src/notes/repository.py` with SQLite schema and CRUD against a file on disk (path configurable; default local file)
+- [x] Add a repository helper that opens an isolated SQLite file for tests (not the dev database)
 
 ## Phase 2: Service layer
 - [ ] Create `src/notes/service.py` that generates UUID ids and sets `created_at` / `updated_at` on create

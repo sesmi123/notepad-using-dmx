@@ -2,20 +2,21 @@
 
 ## Stack
 
-Not yet established — update as the team defines this. There is no `package.json`, `pyproject.toml`, `go.mod`, or other manifest. Language, framework, and database are still open (the spec allows any small local persistent store).
+Python 3.12, FastAPI, uvicorn, SQLite file on disk. Package layout is `src/notes/` managed with uv (`pyproject.toml`, `uv.lock`).
 
 ## Key dependencies
 
-None yet. Choose the minimum needed for HTTP, validation, persistence, and tests when implementation starts.
+- `fastapi` — HTTP API (wired in a later phase)
+- `uvicorn` — ASGI server
+- `pytest` / `httpx` — tests (dev extra)
+- stdlib `sqlite3` — persistence
 
 ## Dev setup
 
-Not yet established — update as the team defines this. After the first code lands, document:
-
-- How to install dependencies
-- How to run the API locally
-- How to run tests
-- Where local/test database files or URLs live
+- Install: `uv sync --extra dev`
+- Dev SQLite file: `data/notes.sqlite` (gitignored)
+- Test SQLite: `isolated_repository(tmp_dir)` in `src/notes/repository.py` — never the default file
+- Run API / tests: not documented yet (API and test suite land in later phases)
 
 ## Constraints
 
