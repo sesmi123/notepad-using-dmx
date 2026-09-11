@@ -12,3 +12,4 @@ _(none yet — append observations here during implementation; promoted to core 
 ## Session Notes
 - `/dmx/init` completed with workflow `sdlc` and ticketing `none`.
 - Product requirements live in root `spec.md` (Notepad REST API). `.dmx/spec.md` is created on the first ticket branch.
+- spec loop completed (outcome: success) — chained to plan (job `feature-add-notes-rest-api-with-persistence-and-tests`).
